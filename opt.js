@@ -2,7 +2,7 @@ const nlp = require("./nlp");
 const opt = require("./operation");
 const dotenv =require("dotenv").config()
 
-const slackUsername = process.env.SLACK
+const slackUsername = "Lyonmike01"
 
 
 

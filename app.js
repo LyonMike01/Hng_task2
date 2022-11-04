@@ -13,7 +13,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-const slackUsername = process.env.SLACK
 const PORT = process.env.PORT
 
 
