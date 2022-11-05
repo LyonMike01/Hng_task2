@@ -1,9 +1,9 @@
 function performOperation(opt, x, y) {
   let result;
   const operation = {
-    ADD: "addition",
-    SUBTRACT: "subtraction",
-    MULTIPLACTION: "multiplication",
+    ADD: "addition"|| "add",
+    SUBTRACT: "subtraction" || "sub",
+    MULTIPLACTION: "multiplication" || "mul",
   };
   switch (opt) {
     case operation.ADD:

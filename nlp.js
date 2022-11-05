@@ -1,52 +1,18 @@
 const { NlpManager } = require("node-nlp");
-//!: Natural Language Processor
-let operation = async (opt) => {
-  let operator;
-  let manager = new NlpManager({
-    languages: ["en"],
-    forceNER: true,
-    ner: { useDuckling: false },
-  });
-  const result = await manager.process(opt);
-  
-  let [first, second] = result.sourceEntities;
+const fs = require("fs");
 
-  let x;
-  let y;
-//! Searches for keywords in the statement passed
-  if (opt.match("add")) {
-    operator = "addition";
-  } else if (opt.match("mul")) {
-    operator = "multiplication";
-  } else if (opt.match("sub")) {
-    operator = "subtraction";
-  }
+const data = fs.readFileSync("./model.nlp", "utf8");
+const manager = new NlpManager();
+manager.import(data);
+//!: Natural Language Processor
+let operation = async (operation_type) => {
+  const result = await manager.process(operation_type);
+
+  //! Searches for keywords in the statement passed
+
   // ! Check: makes sure correct integer is passed
-  if (first.text.match(/[\+\-\*\/]/)) {
-    if (second.text.match(/[\+\-\*\/]/)) {
-      x = first.text.substr(1);
-      y = second.text.substr(1);
-    } else {
-      x = first.text.substr(1);
-      y = second.text;
-    }
-  } else if (second.text.match(/[\+\-\*\/]/)) {
-    if (first.text.match(/[\+\-\*\/]/)) {
-      x = first.text.substr(1);
-      y = second.text.subtr(1);
-    } else {
-      x = first.text;
-      y = second.text.substr(1);
-    }
-  } else {
-    x = first.text;
-    y = second.text;
-  }
-  return {
-    number1: x,
-    number2: y,
-    operator: operator,
-  };
+
+  return result.classifications[0].intent;
 };
 
 module.exports = operation;
