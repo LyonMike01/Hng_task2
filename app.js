@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.post("/api", (req, res) => {
+app.post("/", (req, res) => {
   const operation_input = req.body.operation_type;
   const x = Number(req.body.x);
   const y = Number(req.body.y);
