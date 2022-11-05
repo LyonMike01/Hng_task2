@@ -18,24 +18,24 @@ exports.value1 = (req, res) => {
     operation_input.value === "multiplication"
   ) {
     console.log(true);
-    let result = opt(operation_input.value, x, y);
+    let results = opt(operation_input.value, x, y);
 
     res.send({
       slackUsername: slackUsername,
-      results: result.results,
-      operation_type: result.operation_type,
+      result: results.result,
+      operation_type: results.operation_type,
     });
   } else {
-    nlp(operation_input.value).then((results) => {
-      ({ number1, number2, operator } = results);
-      console.log(results);
-      let result = opt(operator, Number(number1), Number(number2));
+    nlp(operation_input.value).then((result) => {
+      ({ number1, number2, operator } = result);
+      console.log(result);
+      let results = opt(operator, Number(number1), Number(number2));
       // console.log(result);
 
       res.send({
         slackUsername: slackUsername,
-        result: result.results,
-        operation_type: result.operation_type,
+        result: results.result,
+        operation_type: results.operation_type,
       });
     });
   }

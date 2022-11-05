@@ -1,5 +1,5 @@
 function performOperation(opt, x, y) {
-  let results;
+  let result;
   const operation = {
     ADD: "addition",
     SUBTRACT: "subtraction",
@@ -7,20 +7,20 @@ function performOperation(opt, x, y) {
   };
   switch (opt) {
     case operation.ADD:
-      results = x + y;
+      result = x + y;
       break;
     case operation.SUBTRACT:
-      results = x - y;
+      result = x - y;
       break;
     case operation.MULTIPLACTION:
-      results = x * y;
+      result = x * y;
       break;
     default:
-      results = null;
+      result = null;
 
       break;
   }
-  return { results: results, operation_type: opt };
+  return { result: result, operation_type: opt };
 }
 
 module.exports = performOperation;
